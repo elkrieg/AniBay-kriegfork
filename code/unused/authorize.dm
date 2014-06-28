@@ -31,7 +31,7 @@
 			if (code == "ok" && account)
 				src.verbs -= /client/proc/authorize
 				src.authenticated = account
-				src << "Key authorized: Hello [html_encode(account)]!"
+				src << "Key authorized: Hello [rhtml_encode(account)]!"
 				src << "\blue[auth_motd]"
 				success = 1
 
@@ -97,7 +97,7 @@
 			if (code == "ok" && account)
 				src.verbs -= /client/proc/goonauth
 				src.goon = account
-				src << "Key authorized: Hello [html_encode(account)]!"
+				src << "Key authorized: Hello [rhtml_encode(account)]!"
 				src << "\blue[auth_motd]"
 				success = 1
 				goon_key(src.ckey, account)
