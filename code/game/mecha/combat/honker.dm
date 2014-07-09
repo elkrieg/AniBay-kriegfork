@@ -11,7 +11,7 @@
 	max_temperature = 25000
 	infra_luminosity = 5
 	operation_req_access = list(access_clown)
-	wreckage = /obj/effect/decal/mecha_wreckage/honker
+//	wreckage = /obj/effect/decal/mecha_wreckage/honker
 	add_req_access = 0
 	max_equip = 3
 	var/squeak = 0
@@ -27,6 +27,14 @@
 	return
 */
 
+/obj/item/weapon/ore/clown
+	name = "Bananium ore"
+	icon_state = "Clown ore"
+	origin_tech = "materials=4"
+
+/obj/item/weapon/coin/clown
+	name = "bananaium coin"
+	icon_state = "coin_clown"
 
 /obj/mecha/combat/honker/melee_action(target)
 	if(!melee_can_hit)
