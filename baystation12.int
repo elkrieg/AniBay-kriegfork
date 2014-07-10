@@ -2,10 +2,10 @@
 /*
 MAP_ICON_TYPE: 0
 WINDOW: code\game\objects\structures\watercloset.dm
-LAST_COMPILE_VERSION: 506.1236
+LAST_COMPILE_VERSION: 501.1217
 DIR: code code\__HELPERS code\defines code\defines\obj code\game code\game\objects code\game\objects\items code\game\objects\structures code\game\objects\structures\stool_bed_chair_nest maps 
 FILE: code\game\objects\structures\watercloset.dm
-LAST_COMPILE_TIME: 1405004991
+LAST_COMPILE_TIME: 1405016663
 AUTO_FILE_DIR: OFF
 */
 // END_INTERNALS
