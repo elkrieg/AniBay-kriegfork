@@ -313,6 +313,13 @@
 	icon_state = "rubberducky"
 	item_state = "rubberducky"
 
+/obj/item/weapon/bikehorn/blackducky
+	name = "black ducky"
+	desc = "Mysterious black duck, think you can cheat at any time."
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "duck"
+	item_state = "duck"
+
 
 
 /obj/structure/sink
