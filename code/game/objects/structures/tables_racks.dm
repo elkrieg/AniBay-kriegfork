@@ -262,7 +262,6 @@
 		else
 	return
 
-
 /obj/structure/table/blob_act()
 	if(prob(75))
 		destroy()
@@ -273,22 +272,30 @@
 		visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
 		destroy()
 
-
 /obj/structure/table/attack_alien(mob/user)
 	visible_message("<span class='danger'>[user] slices [src] apart!</span>")
+	destroy()
 
 /obj/structure/table/attack_animal(mob/living/simple_animal/user)
 	if(user.wall_smash)
 		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
 		destroy()
 
-
-
 /obj/structure/table/attack_hand(mob/user)
 	if(HULK in user.mutations)
 		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 		destroy()
+
+	if(usr.a_intent == "disarm" && get_dist(user, src) <= 1 && !usr.buckled)
+		visible_message("<span class='notice'>[user] trying to clumb on the [src].</span>")
+		if(do_mob(user, get_turf(user), 8))
+			if(prob(70))
+				visible_message("<span class='notice'>[user] climbs on the [src].</span>")
+				usr.loc = src.loc
+			else
+				visible_message("<span class='warning'>[user] slipped off the edge of the [src].</span>")
+				usr.weakened += 3
 
 /obj/structure/table/attack_tk() // no telehulk sorry
 	return
@@ -471,28 +478,34 @@
 	if( !straight_table_check(turn(direction,90)) || !straight_table_check(turn(direction,-90)) )
 		return 0
 
-	verbs -=/obj/structure/table/verb/do_flip
-	verbs +=/obj/structure/table/proc/do_put
-
-	var/list/targets = list(get_step(src,dir),get_step(src,turn(dir, 45)),get_step(src,turn(dir, -45)))
-	for (var/atom/movable/A in get_turf(src))
-		if (!A.anchored)
-			spawn(0)
-				A.throw_at(pick(targets),1,1)
-
-	dir = direction
-	if(dir != NORTH)
-		layer = 5
-	flipped = 1
-	flags |= ON_BORDER
-	for(var/D in list(turn(direction, 90), turn(direction, -90)))
-		var/obj/structure/table/T = locate() in get_step(src,D)
-		if(T && !T.flipped)
-			T.flip(direction)
-	update_icon()
-	update_adjacent()
-
-	return 1
+	visible_message("<span class='notice'>[usr] trying to flip the [src].</span>")
+	spawn(10)
+	if(prob(80))
+		verbs -=/obj/structure/table/verb/do_flip
+		verbs +=/obj/structure/table/proc/do_put
+		var/list/targets = list(get_step(src,dir),get_step(src,turn(dir, 45)),get_step(src,turn(dir, -45)))
+		for (var/atom/movable/A in get_turf(src))
+			if (!A.anchored)
+				spawn(0)
+					A.throw_at(pick(targets),1,1)
+		dir = direction
+		if(dir != NORTH)
+			layer = 5
+		flipped = 1
+		flags |= ON_BORDER
+		for(var/D in list(turn(direction, 90), turn(direction, -90)))
+			var/obj/structure/table/T = locate() in get_step(src,D)
+			if(T && !T.flipped)
+				T.flip(direction)
+		update_icon()
+		update_adjacent()
+		return 1
+	else
+		usr << "<span class='warning'>[src] slips away from your hands and fall right on your foots!</span>"
+		visible_message("<span class='warning'>[src] falls and crushes down [usr] foots!</span>")
+		usr.emote("scream")
+		usr.weakened += 6
+		return 0
 
 /obj/structure/table/proc/unflip()
 	verbs -=/obj/structure/table/proc/do_put
@@ -589,6 +602,7 @@
 			if(prob(25))
 				del(src)
 				new /obj/item/weapon/rack_parts(src.loc)
+	return
 
 /obj/structure/rack/blob_act()
 	if(prob(75))
@@ -633,12 +647,21 @@
 /obj/structure/rack/meteorhit(obj/O as obj)
 	del(src)
 
-
-/obj/structure/table/attack_hand(mob/user)
+/obj/structure/rack/attack_hand(mob/user)
 	if(HULK in user.mutations)
 		visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 		destroy()
+
+	if(usr.a_intent == "disarm" && get_dist(user, src) <= 1 && !usr.buckled)
+		visible_message("<span class='notice'>[user] trying to clumb on the [src].</span>")
+		if(do_mob(user, get_turf(user), 8))
+			if(prob(90))
+				visible_message("<span class='notice'>[user] climbs on the [src].</span>")
+				usr.loc = src.loc
+			else
+				visible_message("<span class='warning'>[user] slipped off the edge of the [src].</span>")
+				usr.weakened += 3
 
 /obj/structure/rack/attack_paw(mob/user)
 	if(HULK in user.mutations)
