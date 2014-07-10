@@ -365,6 +365,12 @@
 	w_class = 3
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
 
+/obj/item/toy/zlofenix
+	name = "Animus Phoenix"
+	desc = "At some point in the life cycle of the Animus Phoenix dies and is reborn again."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "zlofenix"
+
 /*
  * Crayons
  */
