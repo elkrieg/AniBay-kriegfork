@@ -962,14 +962,14 @@ datum/preferences
 								var/datum/language/lang = all_languages[L]
 								if((!(lang.flags & RESTRICTED)) && (is_alien_whitelisted(user, L)||(!( lang.flags & WHITELISTED ))||(S && (L in S.secondary_langs))))
 									new_languages += lang
-									
+
 									//Apparently there's some PHP script that needs to be updated in order to give people whitelist languages.
 									//This workaround should be removed once that has been properly updated
 									if (lang.name == "Siik'maas")
 										new_languages |= all_languages["Siik'tajr"]
 									if (lang.name == "Siik'tajr")
 										new_languages |= all_languages["Siik'maas"]
-									
+
 									languages_available = 1
 
 							if(!(languages_available))
@@ -1096,11 +1096,11 @@ datum/preferences
 							nanotrasen_relation = new_relation
 
 					if("flavor_text")
-						var/msg = input(usr,"Set the flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!","Flavor Text",html_decode(flavor_text)) as message
+						var/msg = sanitize_uni(input(usr,"Set the flavor text in your 'examine' verb. This can also be used for OOC notes and preferences!","Flavor Text",html_decode(flavor_text)) as message)
 
 						if(msg != null)
 							msg = copytext(msg, 1, MAX_MESSAGE_LEN)
-							msg = rhtml_encode(msg)
+							msg = sanitize_uni(msg) //Pizdec, hole, http_encode udalili.
 
 							flavor_text = msg
 

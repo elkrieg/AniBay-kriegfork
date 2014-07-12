@@ -136,6 +136,7 @@ mob/living/parasite/meme/me_verb(message as text)
 	if(!host)
 		usr << "\red You can't emote without host!"
 		return
+	message = sanitize_uni(message)
 
 	return host.me_verb(message)
 
@@ -215,6 +216,7 @@ mob/living/parasite/meme/verb/Thought()
 
 	var/message = input("What would you like to say?", "Message") as null
 	if(!message) return
+	message = sanitize_uni(message)
 
 	// Use the points at the end rather than the beginning, because the user might cancel
 	if(!use_points(50)) return

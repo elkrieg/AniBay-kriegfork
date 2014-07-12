@@ -611,7 +611,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			if (in_range(src, U) && loc == U)
 				n = copytext(adminscrub(n), 1, MAX_MESSAGE_LEN)
 				if (mode == 1)
-					note = html_decode(n)
+					note = sanitize_uni(html_decode(n))
 					notehtml = note
 					note = replacetext(note, "\n", "<br>")
 			else
@@ -917,18 +917,18 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if(useTC != 2) // Does our recipient have a broadcaster on their level?
 			U << "ERROR: Cannot reach recipient."
 			return
-		var/send_result = useMS.send_pda_message("[P.owner]","[owner]","[t]")
+		var/send_result = useMS.send_pda_message("[P.owner]","[owner]","[sanitize_uni(html_decode(t))]")
 		if (send_result)
 			U << "ERROR: Messaging server rejected your message. Reason: contains '[send_result]'."
 			return
 
-		tnote.Add(list(list("sent" = 1, "owner" = "[P.owner]", "job" = "[P.ownjob]", "message" = "[t]", "target" = "\ref[P]")))
-		P.tnote.Add(list(list("sent" = 0, "owner" = "[owner]", "job" = "[ownjob]", "message" = "[t]", "target" = "\ref[src]")))
+		tnote.Add(list(list("sent" = 1, "owner" = "[P.owner]", "job" = "[P.ownjob]", "message" = "[sanitize_uni(html_decode(t))]", "target" = "\ref[P]")))
+		P.tnote.Add(list(list("sent" = 0, "owner" = "[owner]", "job" = "[ownjob]", "message" = "[sanitize_uni(html_decode(t))]", "target" = "\ref[src]")))
 		for(var/mob/M in player_list)
 			if(M.stat == DEAD && M.client && (M.client.prefs.toggles & CHAT_GHOSTEARS)) // src.client is so that ghosts don't have to listen to mice
 				if(istype(M, /mob/new_player))
 					continue
-				M.show_message("<span class='game say'>PDA Message - <span class='name'>[owner]</span> -> <span class='name'>[P.owner]</span>: <span class='message'>[t]</span></span>")
+				M.show_message("<span class='game say'>PDA Message - <span class='name'>[owner]</span> -> <span class='name'>[P.owner]</span>: <span class='message'>[sanitize_uni(html_decode(t))]</span></span>")
 
 		if(!conversations.Find("\ref[P]"))
 			conversations.Add("\ref[P]")
@@ -943,7 +943,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			for(var/mob/living/silicon/ai/ai in mob_list)
 				// Allows other AIs to intercept the message but the AI won't intercept their own message.
 				if(ai.aiPDA != P && ai.aiPDA != src)
-					ai.show_message("<i>Intercepted message from <b>[who]</b>: [t]</i>")
+					ai.show_message("<i>Intercepted message from <b>[who]</b>: [sanitize_uni(html_decode(t))]</i>")
 
 
 		if (!P.silent)
@@ -965,7 +965,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 		nanomanager.update_user_uis(U, P) // Update the sending user's PDA UI so that they can see the new message
 
-		log_pda("[usr] (PDA: [src.name]) sent \"[t]\" to [P.name]")
+		log_pda("[usr] (PDA: [src.name]) sent \"[sanitize_uni(html_decode(t))]\" to [P.name]")
 		P.overlays.Cut()
 		P.overlays += image('icons/obj/pda.dmi', "pda-r")
 		P.newmessage = 1
