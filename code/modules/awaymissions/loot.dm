@@ -3,22 +3,15 @@
 	icon_state = "x2"
 	var/lootcount = 1		//how many items will be spawned
 	var/lootdoubles = 0		//if the same item can be spawned twice
-	var/loot = ""			//a list of possible items to spawn- a string of paths
+	var/list/loot			//a list of possible items to spawn e.g. list(/obj/item, /obj/structure, /obj/effect)
 
 /obj/effect/spawner/lootdrop/initialize()
-	var/list/things = params2list(loot)
-
-	if(things && things.len)
+	if(loot && loot.len)
 		for(var/i = lootcount, i > 0, i--)
-			if(!things.len)
-				return
+			if(!loot.len) break
+			var/lootspawn = pick(loot)
+			if(!lootdoubles)
+				loot.Remove(lootspawn)
 
-			var/loot_spawn = pick(things)
-			var/loot_path = text2path(loot_spawn)
-
-			if(!loot_path || !lootdoubles)
-				things.Remove(loot_spawn)
-				continue
-
-			new loot_path(get_turf(src))
+			new lootspawn(get_turf(src))
 	del(src)
