@@ -1803,6 +1803,10 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Telecoms Control Room"
 	icon_state = "tcomsatcomp"
 
+/area/tcommsat/storage
+	name = "\improper Telecoms Storage"
+	icon_state = "tcomsatcomp"
+
 /area/tcommsat/lounge
 	name = "\improper Telecommunications Satellite Lounge"
 	icon_state = "tcomsatlounge"

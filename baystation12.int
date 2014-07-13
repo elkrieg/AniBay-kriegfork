@@ -3,9 +3,9 @@
 MAP_ICON_TYPE: 0
 WINDOW: maps\anibay1.5.dmm
 LAST_COMPILE_VERSION: 501.1217
-DIR: code code\game\objects\structures\stool_bed_chair_nest code\modules\projectiles\guns code\modules\projectiles\guns\energy icons icons\misc maps 
+DIR: code code\game code\game\area code\game\objects\structures\stool_bed_chair_nest code\modules\projectiles\guns code\modules\projectiles\guns\energy icons icons\obj maps 
 FILE: maps\anibay1.5.dmm
-LAST_COMPILE_TIME: 1405260443
+LAST_COMPILE_TIME: 1405291727
 AUTO_FILE_DIR: OFF
 */
 // END_INTERNALS
