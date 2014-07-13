@@ -48,9 +48,9 @@
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
-		msg = input(src,"Message:", "Private message to [key_name(C, 0, holder ? 1 : 0)]") as text|null
-
-		if(!msg)	return
+		msg = sanitize_uni(input(src,"Message:", "Private message to [key_name(C, 0, holder ? 1 : 0)]") as text|null)
+		if(!msg)
+			return
 		if(!C)
 			if(holder)	src << "<font color='red'>Error: Admin-PM: Client not found.</font>"
 			else		adminhelp(msg)	//admin we are replying to has vanished, adminhelp instead
@@ -60,14 +60,13 @@
 		return
 
 	//clean the message if it's not sent by a high-rank admin
-	if(!check_rights(R_SERVER|R_DEBUG,0))
-		msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
-		if(!msg)	return
+	//if(!check_rights(R_SERVER|R_DEBUG,0))
+	msg = sanitize_uni(copytext(msg,1,MAX_MESSAGE_LEN))
+	if(!msg)	return
 
 	var/recieve_color = "purple"
 	var/send_pm_type = " "
 	var/recieve_pm_type = "Player"
-
 
 	if(holder)
 		//mod PMs are maroon
@@ -78,7 +77,7 @@
 			else
 				recieve_color = "maroon"
 			send_pm_type = holder.rank + " "
-			if(!C.holder && holder && holder.fakekey) 
+			if(!C.holder && holder && holder.fakekey)
 				recieve_pm_type = "Admin"
 			else
 				recieve_pm_type = holder.rank
@@ -100,7 +99,7 @@
 			spawn(0)	//so we don't hold the caller proc up
 				var/sender = src
 				var/sendername = key
-				var/reply = input(C, msg,"[recieve_pm_type] PM from-[sendername]", "") as text|null		//show message and await a reply
+				var/reply = sanitize_uni(input(C, msg,"[recieve_pm_type] PM from-[sendername]", "")) as text|null		//show message and await a reply
 				if(C && reply)
 					if(sender)
 						C.cmd_admin_pm(sender,reply)										//sender is still about, let's reply to them
@@ -137,7 +136,7 @@
 	if(!msg)
 		return
 
-	sanitize(msg)
+	sanitize_uni(msg)
 
 	if(length(msg) > 400) // TODO: if message length is over 400, divide it up into seperate messages, the message length restriction is based on IRC limitations.  Probably easier to do this on the bots ends.
 		src << "\red Your message was not sent because it was more then 400 characters find your message below for ease of copy/pasting"
