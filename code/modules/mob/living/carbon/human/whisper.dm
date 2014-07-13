@@ -36,14 +36,14 @@
 
 
 //This is used by both the whisper verb and human/say() to handle whispering
-/mob/living/carbon/human/proc/whisper_say(var/message, var/datum/language/speaking = null, var/alt_name="", var/verb="whispers")
+/mob/living/carbon/human/proc/whisper_say(var/message, var/datum/language/speaking = null, var/alt_name="", var/verb="шепчет")
 	var/message_range = 1
 	var/eavesdropping_range = 2
 	var/watching_range = 5
 	var/italics = 1
 
 	if (speaking)
-		verb = speaking.speech_verb + pick(" quietly", " softly")
+		verb = pick("тихо ", "нежно ") + speaking.speech_verb
 
 	message = capitalize(trim(message))
 
@@ -82,7 +82,7 @@
 
 	//TODO: handle_speech_problems
 	if (src.stuttering)
-		message = stutter(message)
+		message = stutter_uni(message)
 
 	var/list/listening = hearers(message_range, src)
 	listening |= src
@@ -131,6 +131,6 @@
 			M.hear_say(new_message, verb, speaking, alt_name, italics, src)
 
 	if (watching.len)
-		var/rendered = "<span class='game say'><span class='name'>[src.name]</span> whispers something.</span>"
+		var/rendered = "<span class='game say'><span class='name'>[src.name]</span> шепчет что-то.</span>"
 		for (var/mob/M in watching)
 			M.show_message(rendered, 2)

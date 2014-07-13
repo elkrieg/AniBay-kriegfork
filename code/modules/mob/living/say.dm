@@ -98,7 +98,7 @@ var/list/department_radio_keys = list(
 		if(!istype(dongle)) return
 		if(dongle.translate_binary) return 1
 
-/mob/living/say(var/message, var/datum/language/speaking = null, var/verb="says", var/alt_name="", var/italics=0, var/message_range = world.view, var/list/used_radios = list(), var/sound/speech_sound, var/sound_vol)
+/mob/living/say(var/message, var/datum/language/speaking = null, var/verb="говорит", var/alt_name="", var/italics=0, var/message_range = world.view, var/list/used_radios = list(), var/sound/speech_sound, var/sound_vol)
 
 	var/turf/T = get_turf(src)
 
@@ -119,7 +119,7 @@ var/list/department_radio_keys = list(
 
 		for(var/mob/living/M in hearers(5, src))
 			if(M != src)
-				M.show_message("<span class='notice'>[src] talks into [used_radios.len ? used_radios[1] : "the radio."]</span>")
+				M.show_message("<span class='notice'>[src] говорит в [used_radios.len ? used_radios[1] : "the radio."]</span>")
 			if (speech_sound)
 				src.playsound_local(get_turf(src), speech_sound, sound_vol * 0.5, 1)
 
@@ -177,7 +177,7 @@ var/list/department_radio_keys = list(
 
 	log_say("[name]/[key] : [message]")
 
-/mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
+/mob/living/proc/say_signlang(var/message, var/verb="жестикулирует", var/datum/language/language)
 	for (var/mob/O in viewers(src, null))
 		O.hear_signlang(message, verb, language, src)
 

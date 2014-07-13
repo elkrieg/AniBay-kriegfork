@@ -1,5 +1,5 @@
 /mob/living/carbon/human/say(var/message)
-	var/verb = "says"
+	var/verb = "говорит"
 	var/alt_name = ""
 	var/message_range = world.view
 	var/italics = 0
@@ -38,7 +38,7 @@
 		verb = speaking.speech_verb
 		message = copytext(message,3)
 
-	message = capitalize(trim(message))
+	message = capitalize_uni(trim(message))
 
 	if(speech_problem_flag)
 		var/list/handle_r = handle_speech_problems(message)
@@ -52,9 +52,20 @@
 	if (!speaking)
 		var/ending = copytext(message, length(message))
 		if(ending=="!")
-			verb=pick("exclaims","shouts","yells")
-		if(ending=="?")
-			verb="asks"
+			verb = "восклицает"
+			ending = copytext(message, length(message) - 1)
+			if(ending=="!!")
+				verb = "кричит"
+				ending = copytext(message, length(message) - 2)
+				if(ending=="!!!")
+					verb = "орет"
+			if(ending=="?!")
+				verb = "возмущен"
+		else if(ending=="?")
+			verb = "спрашивает"
+			ending = copytext(message, length(message) - 1)
+			if(ending=="!?")
+				verb = "удивлен"
 
 	var/list/obj/item/used_radios = new
 
@@ -192,12 +203,12 @@
 */
 
 /mob/living/carbon/human/say_quote(var/message, var/datum/language/speaking = null)
-	var/verb = "says"
+	var/verb = "говорит"
 	var/ending = copytext(message, length(message))
 	if(ending=="!")
-		verb=pick("exclaims","shouts","yells")
+		verb=pick("вскрикивает","кричит","вопит")
 	else if(ending=="?")
-		verb="asks"
+		verb = "спрашивает"
 
 	return verb
 
@@ -206,7 +217,7 @@
 
 /mob/living/carbon/human/proc/handle_speech_problems(var/message)
 	var/list/returns[3]
-	var/verb = "says"
+	var/verb = "говорит"
 	var/handled = 0
 	if(silent)
 		message = ""
@@ -220,27 +231,27 @@
 			if(hoers.voicechange)
 				if(mind && mind.changeling && department_radio_keys[copytext(message, 1, 3)] != "changeling")
 					message = pick("NEEIIGGGHHHH!", "NEEEIIIIGHH!", "NEIIIGGHH!", "HAAWWWWW!", "HAAAWWW!")
-					verb = pick("whinnies","neighs", "says")
+					verb = pick("ржет")
 					handled = 1
 
 	if((HULK in mutations) && health >= 25 && length(message))
-		message = "[uppertext(message)]!!!"
-		verb = pick("yells","roars","hollers")
+		message = "[uppertext_uni(message)]!!!"
+		verb = pick("кричит","рычит","вопит")
 		handled = 1
 	if(slurring)
-		message = slur(message)
-		verb = pick("stammers","stutters")
+		message = slurring_uni(message)
+		verb = "говорит и икает"
 		handled = 1
 
 	var/braindam = getBrainLoss()
 	if(braindam >= 60)
 		handled = 1
 		if(prob(braindam/4))
-			message = stutter(message)
-			verb = pick("stammers", "stutters")
+			message = stutter_uni(message)
+			verb = "говорит и икает"
 		if(prob(braindam))
-			message = uppertext(message)
-			verb = pick("yells like an idiot","says rather loudly")
+			message = uppertext_uni(message)
+			verb = pick("кричит как идиот","говорит очень громко")
 
 	returns[1] = message
 	returns[2] = verb

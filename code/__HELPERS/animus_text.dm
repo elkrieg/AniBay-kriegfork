@@ -53,13 +53,13 @@ proc/sanitize_russian(var/msg) //Специально для всего, где не нужно убирать пере
  * Text modification
  */
 
-/proc/ruscapitalize(var/t as text)
+/proc/capitalize_uni(var/t as text)
 	var/s = 2
 	if (copytext(t,1,2) == ";")
 		s += 1
 	if (copytext(t,1,2) == ":")
 		s += 2
-	return pointization(upperrustext(copytext(t, 1, s)) + copytext(t, s))
+	return intonation(pointization(uppertext_uni(copytext(t, s - 1, s)) + copytext(t, s)))
 
 /proc/pointization(text as text)
 	if (!text)
@@ -72,7 +72,7 @@ proc/sanitize_russian(var/msg) //Специально для всего, где не нужно убирать пере
 	return text
 
 
-/proc/upperrustext(text as text)
+/proc/uppertext_uni(text as text)
 	var/t = ""
 	for(var/i = 1, i <= length(text), i++)
 		var/a = text2ascii(text, i)
@@ -83,7 +83,7 @@ proc/sanitize_russian(var/msg) //Специально для всего, где не нужно убирать пере
 		else t += ascii2text(a)
 	return t
 
-/proc/lowerrustext(text as text)
+/proc/lowertext_uni(text as text)
 	var/t = ""
 	for(var/i = 1, i <= length(text), i++)
 		var/a = text2ascii(text, i)
@@ -96,7 +96,7 @@ proc/sanitize_russian(var/msg) //Специально для всего, где не нужно убирать пере
 
 proc/intonation(text)
 	if (copytext(text,-3) == "!!!")
-		text = upperrustext(text)
+		text = uppertext_uni(text)
 	if (copytext(text,-1) == "!")
 		text = "<b>[text]</b>"
 	return text
@@ -124,7 +124,7 @@ proc/intonation(text)
 	return list
 
 // For drunken speak, etc
-proc/slurring(phrase) // using cp1251!
+proc/slurring_uni(phrase) // using cp1251!
 	phrase = html_decode(phrase)
 	var/index = findtext(phrase, "я")
 	while(index)
@@ -144,8 +144,8 @@ proc/slurring(phrase) // using cp1251!
 			if(lowertext(newletter)=="а")	newletter="ах"
 			if(lowertext(newletter)=="ы")	newletter="i"
 		switch(rand(1,15))
-			if(1,3,5,8)	newletter="[lowerrustext(newletter)]"
-			if(2,4,6,15)	newletter="[upperrustext(newletter)]"
+			if(1,3,5,8)	newletter="[lowertext_uni(newletter)]"
+			if(2,4,6,15)	newletter="[uppertext_uni(newletter)]"
 			if(7)	newletter+="'"
 			if(9,10)	newletter="<b>[newletter]</b>"
 			if(11,12)	newletter="<big>[newletter]</big>"
@@ -153,3 +153,39 @@ proc/slurring(phrase) // using cp1251!
 		newphrase+="[newletter]"
 		counter-=1
 	return newphrase
+
+proc/stutter_uni(phrase,stunned)
+	phrase = html_decode(phrase)
+
+	var/list/split_phrase = dd_text2list(phrase," ") //Split it up into words.
+
+	var/list/unstuttered_words = split_phrase.Copy()
+	var/i = rand(1,3)
+	if(stunned) i = split_phrase.len
+	for(,i > 0,i--) //Pick a few words to stutter on.
+
+		if (!unstuttered_words.len)
+			break
+		var/word = pick(unstuttered_words)
+		unstuttered_words -= word //Remove from unstuttered words so we don't stutter it again.
+		var/index = split_phrase.Find(word) //Find the word in the split phrase so we can replace it.
+
+		//Search for dipthongs (two letters that make one sound.)
+		var/first_sound = copytext(word,1,2)
+		var/first_letter = copytext(word,1,2)
+		if(lowertext_uni(first_sound) in list("ч","ш","щ","с"))
+			first_letter = first_sound
+
+		//Repeat the first letter to create a stutter.
+		var/rnum = rand(1,3)
+		switch(rnum)
+			if(1)
+				word = "[first_letter]-[word]"
+			if(2)
+				word = "[first_letter]-[first_letter]-[word]"
+			if(3)
+				word = "[first_letter]-[first_letter]-[first_letter]-[word]"
+
+		split_phrase[index] = word
+
+	return sanitize_uni(dd_list2text(split_phrase," "))
