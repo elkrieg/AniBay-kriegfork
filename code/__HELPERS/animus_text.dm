@@ -39,6 +39,19 @@
  * Text sanitization
  */
 
+/proc/sanitize_simple_uni(var/t,var/list/repl_chars = list("\n"="#","\t"="#","пїЅ"="пїЅ","я"="____255_"))
+	for(var/char in repl_chars)
+		var/index = findtext(t, char)
+		while(index)
+			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index+1)
+			index = findtext(t, char)
+	t = html_encode(t)
+	var/index = findtext(t, "____255_")
+	while(index)
+		t = copytext(t, 1, index) + "&#255;" + copytext(t, index+8)
+		index = findtext(t, "____255_")
+	return t
+
 proc/sanitize_russian(var/msg) //Специально для всего, где не нужно убирать переносы строк и прочее.
 	var/index = findtext(msg, "я")
 	while(index)
@@ -48,6 +61,36 @@ proc/sanitize_russian(var/msg) //Специально для всего, где не нужно убирать пере
 
 /proc/sanitize_uni(var/t,var/list/repl_chars = null)
 	return sanitize_simple_uni(t,repl_chars)
+
+/proc/rhtml_encode(var/msg)
+	var/list/c = text2list(msg, "я")
+	if(c.len == 1)
+		c = text2list(msg, "&#255;")
+		if(c.len == 1)
+			return html_encode(msg)
+	var/out = ""
+	var/first = 1
+	for(var/text in c)
+		if(!first)
+			out += "&#255;"
+		first = 0
+		out += html_encode(text)
+	return out
+
+/proc/rhtml_decode(var/msg)
+	var/list/c = text2list(msg, "я")
+	if(c.len == 1)
+		c = text2list(msg, "&#255;")
+		if(c.len == 1)
+			return html_decode(msg)
+	var/out = ""
+	var/first = 1
+	for(var/text in c)
+		if(!first)
+			out += "&#255;"
+		first = 0
+		out += html_decode(text)
+	return out
 
  /*
  * Text modification
@@ -59,7 +102,7 @@ proc/sanitize_russian(var/msg) //Специально для всего, где не нужно убирать пере
 		s += 1
 	if (copytext(t,1,2) == ":")
 		s += 2
-	return intonation(pointization(uppertext_uni(copytext(t, s - 1, s)) + copytext(t, s)))
+	return pointization(uppertext_uni(copytext(t, s - 1, s)) + copytext(t, s))
 
 /proc/pointization(text as text)
 	if (!text)

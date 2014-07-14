@@ -48,19 +48,6 @@
 		index = findtext(t, "____255_")
 	return t
 
-/proc/sanitize_simple_uni(var/t,var/list/repl_chars = list("\n"="#","\t"="#","ï¿½"="ï¿½","ÿ"="____255_"))
-	for(var/char in repl_chars)
-		var/index = findtext(t, char)
-		while(index)
-			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index+1)
-			index = findtext(t, char)
-	t = html_encode(t)
-	var/index = findtext(t, "____255_")
-	while(index)
-		t = copytext(t, 1, index) + "&#255;" + copytext(t, index+8)
-		index = findtext(t, "____255_")
-	return t
-
 //Runs byond's sanitization proc along-side sanitize_simple
 /proc/sanitize(var/t,var/list/repl_chars = null)
 	return sanitize_simple(t,repl_chars)
@@ -93,36 +80,6 @@
 /proc/stripped_input(var/mob/user, var/message = "", var/title = "", var/default = "", var/max_length=MAX_MESSAGE_LEN)
 	var/name = input(user, message, title, default)
 	return strip_html_simple(name, max_length)
-
-/proc/rhtml_encode(var/msg)
-	var/list/c = text2list(msg, "ÿ")
-	if(c.len == 1)
-		c = text2list(msg, "&#255;")
-		if(c.len == 1)
-			return html_encode(msg)
-	var/out = ""
-	var/first = 1
-	for(var/text in c)
-		if(!first)
-			out += "&#255;"
-		first = 0
-		out += html_encode(text)
-	return out
-
-/proc/rhtml_decode(var/msg)
-	var/list/c = text2list(msg, "ÿ")
-	if(c.len == 1)
-		c = text2list(msg, "&#255;")
-		if(c.len == 1)
-			return html_decode(msg)
-	var/out = ""
-	var/first = 1
-	for(var/text in c)
-		if(!first)
-			out += "&#255;"
-		first = 0
-		out += html_decode(text)
-	return out
 
 //Filters out undesirable characters from names
 /proc/reject_bad_name(var/t_in, var/allow_numbers=0, var/max_length=MAX_NAME_LEN)
