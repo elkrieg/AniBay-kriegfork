@@ -1,11 +1,11 @@
 // BEGIN_INTERNALS
 /*
 MAP_ICON_TYPE: 0
-WINDOW: maps\tgstation2.dmm;maps\work_in_progress\anibay1.6.dmm
-LAST_COMPILE_VERSION: 501.1217
-DIR: code code\game code\game\area code\game\objects\structures\stool_bed_chair_nest code\modules\projectiles\guns code\modules\projectiles\guns\energy icons icons\obj maps maps\work_in_progress 
-FILE: maps\work_in_progress\anibay1.6.dmm
-LAST_COMPILE_TIME: 1405369481
+WINDOW: code\game\asteroid.dm;code\global.dm;code\world.dm;code\controllers\configuration.dm;code\controllers\verbs.dm;code\controllers\voting.dm;code\defines\obj\weapon.dm;code\defines\procs\statistics.dm;code\modules\admin\IsBanned.dm;code\modules\library\lib_machines.dm;code\defines\procs\dbcore.dm;code\game\gamemodes\gameticker.dm;code\modules\mob\living\silicon\robot\death.dm;code\modules\mob\living\carbon\human\death.dm
+LAST_COMPILE_VERSION: 506.1247
+DIR: code code\defines\obj code\defines\procs code\game\area code\game\gamemodes code\game\objects\structures\stool_bed_chair_nest code\modules\admin code\modules\library code\modules\mob code\modules\mob\living code\modules\mob\living\carbon code\modules\mob\living\carbon\human code\modules\mob\living\silicon code\modules\mob\living\silicon\robot code\modules\projectiles\guns code\modules\projectiles\guns\energy icons\obj maps maps\work_in_progress 
+FILE: code\defines\procs\dbcore.dm
+LAST_COMPILE_TIME: 1405430731
 AUTO_FILE_DIR: OFF
 */
 // END_INTERNALS
