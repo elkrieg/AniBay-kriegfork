@@ -522,7 +522,7 @@
 				if("revival_brain_life")
 					config.revival_brain_life = value
 				if("run_speed")
-					config.run_speed = value
+					config.run_speed = 1
 				if("walk_speed")
 					config.walk_speed = value
 				if("human_delay")

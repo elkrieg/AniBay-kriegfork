@@ -698,6 +698,14 @@
 						CM.legcuffed = null
 						CM.update_inv_legcuffed()
 
+/mob/living/proc/float(on)
+	if(on && !floating)
+		animate(src, pixel_y = 2, time = 10, loop = -1)
+		floating = 1
+	else if(!on && floating)
+		animate(src, pixel_y = initial(pixel_y), time = 10)
+		floating = 0
+
 /mob/living/verb/lay_down()
 	set name = "Rest"
 	set category = "IC"

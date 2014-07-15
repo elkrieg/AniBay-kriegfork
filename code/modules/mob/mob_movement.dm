@@ -399,36 +399,19 @@
 ///Return 1 for movement 0 for none
 /mob/proc/Process_Spacemove(var/check_drift = 0)
 	//First check to see if we can do things
-	if(restrained())
+	if(!canmove)
 		return 0
 
-	/*
-	if(istype(src,/mob/living/carbon))
-		if(src.l_hand && src.r_hand)
-			return 0
-	*/
+	if(!isturf(loc))	//if they're in a disposal unit, for example
+		return 1
 
 	var/dense_object = 0
 	for(var/turf/turf in oview(1,src))
 		if(istype(turf,/turf/space))
 			continue
 
-		if(istype(src,/mob/living/carbon/human/))  // Only humans can wear magboots, so we give them a chance to.
-			if((istype(turf,/turf/simulated/floor)) && (src.lastarea.has_gravity == 0) && !(istype(src:shoes, /obj/item/clothing/shoes/magboots) && (src:shoes:flags & NOSLIP)))
-				continue
-
-
-		else
-			if((istype(turf,/turf/simulated/floor)) && (src.lastarea.has_gravity == 0)) // No one else gets a chance.
-				continue
-
-
-
-		/*
-		if(istype(turf,/turf/simulated/floor) && (src.flags & NOGRAV))
+		if(!turf.density)
 			continue
-		*/
-
 
 		dense_object++
 		break
@@ -449,18 +432,16 @@
 	if(!dense_object)
 		return 0
 
-
-
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)))
 		src << "\blue <B>You slipped!</B>"
 		src.inertia_dir = src.last_move
 		step(src, src.inertia_dir)
 		return 0
+
 	//If not then we can reset inertia and move
 	inertia_dir = 0
 	return 1
-
 
 /mob/proc/Process_Spaceslipping(var/prob_slip = 5)
 	//Setup slipage

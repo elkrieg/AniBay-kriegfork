@@ -18,6 +18,7 @@
 
 
 	var/hallucination = 0 //Directly affects how long a mob will hallucinate for
+	var/floating = 0
 	var/list/atom/hallucinations = list() //A list of hallucinated people that try to attack the mob. See /obj/effect/fake_attacker in hallucinations.dm
 
 
