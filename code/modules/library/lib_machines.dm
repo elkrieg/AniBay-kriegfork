@@ -190,7 +190,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 		if(4)
 			dat += "<h3>External Archive</h3>"
 			establish_db_connection()
-			if(!dbcon_old.IsConnected())
+			if(!dbcon.IsConnected())
 				dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
 			else
 				dat += {"<A href='?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
@@ -330,7 +330,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				var/choice = input("Are you certain you wish to upload this title to the Archive?") in list("Confirm", "Abort")
 				if(choice == "Confirm")
 					establish_db_connection()
-					if(!dbcon_old.IsConnected())
+					if(!dbcon.IsConnected())
 						alert("Connection to Archive has been severed. Aborting.")
 					else
 						/*
@@ -353,7 +353,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	if(href_list["targetid"])
 		var/sqlid = sanitizeSQL(href_list["targetid"])
 		establish_db_connection()
-		if(!dbcon_old.IsConnected())
+		if(!dbcon.IsConnected())
 			alert("Connection to Archive has been severed. Aborting.")
 		if(bibledelay)
 			for (var/mob/V in hearers(src))
