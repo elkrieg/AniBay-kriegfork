@@ -1,17 +1,11 @@
 // BEGIN_INTERNALS
 /*
 MAP_ICON_TYPE: 0
-<<<<<<< HEAD
-WINDOW: code\game\objects\items\devices\PDA\PDA.dm;code\modules\admin\verbs\adminpm.dm;code\game\objects\items\weapons\cards_ids.dm;code\game\objects\structures\crates_lockers\crates.dm;code\game\objects\structures\crates_lockers\closets.dm;code\game\objects\items\devices\multitool.dm
+WINDOW: code\game\objects\items\devices\PDA\PDA.dm;code\modules\admin\verbs\adminpm.dm;code\game\objects\items\weapons\cards_ids.dm;code\game\objects\structures\crates_lockers\crates.dm;code\game\objects\structures\crates_lockers\closets.dm;maps\anibay1.5.dmm
 LAST_COMPILE_VERSION: 506.1247
-DIR: code code\_onclick code\_onclick\hud code\ATMOSPHERICS code\ATMOSPHERICS\components code\ATMOSPHERICS\components\omni_devices code\ATMOSPHERICS\components\trinary_devices code\ATMOSPHERICS\components\unary code\controllers code\datums code\game code\game\objects code\game\objects\items code\game\objects\items\devices code\game\objects\items\devices\PDA code\game\objects\items\weapons code\game\objects\structures code\game\objects\structures\crates_lockers code\modules code\modules\admin code\modules\admin\verbs 
-FILE: code\game\objects\items\devices\multitool.dm
-LAST_COMPILE_TIME: 1405445440
-AUTO_FILE_DIR: OFF
-=======
-LAST_COMPILE_VERSION: 501.1217
-LAST_COMPILE_TIME: 1405440421
+DIR: code code\_onclick code\_onclick\hud code\ATMOSPHERICS code\ATMOSPHERICS\components code\ATMOSPHERICS\components\omni_devices code\ATMOSPHERICS\components\trinary_devices code\ATMOSPHERICS\components\unary code\controllers code\datums code\game code\game\objects code\game\objects\items code\game\objects\items\devices code\game\objects\items\devices\PDA code\game\objects\items\weapons code\game\objects\structures code\game\objects\structures\crates_lockers code\modules code\modules\admin code\modules\admin\verbs maps 
+FILE: maps\anibay1.5.dmm
+LAST_COMPILE_TIME: 1405447582
 AUTO_FILE_DIR: ON
->>>>>>> d0d202078f40bd143dae82b1636db4ad73cca00e
 */
 // END_INTERNALS

@@ -193,14 +193,9 @@
 					icon_state = "tequillasunriseglass"
 					name = "Tequilla Sunrise"
 					desc = "Oh great, now you feel nostalgic about sunrises back on Terra..."
-<<<<<<< HEAD
-				if("plasmaspecial")
-					icon_state = "plasmaspecialglass"
-=======
 					center_of_mass = list("x"=16, "y"=10)
-				if("phoronspecial")
+				if("plasmaspecial")
 					icon_state = "phoronspecialglass"
->>>>>>> d0d202078f40bd143dae82b1636db4ad73cca00e
 					name = "Toxins Special"
 					desc = "Whoah, this thing is on FIRE"
 				if("beepskysmash")
