@@ -553,11 +553,10 @@
 	proc/move()
 		var/obj/structure/disposalpipe/last
 		while(active)
-			// Fuck the pipe damage
-			//if(hasmob && prob(3))
-			//	for(var/mob/living/H in src)
-			//		if(!istype(H,/mob/living/silicon/robot/drone))
-			//			H.take_overall_damage(20, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
+			if(hasmob && prob(3))
+				for(var/mob/living/H in src)
+					if(!istype(H,/mob/living/silicon/robot/drone))
+						H.take_overall_damage(8, 0, "Blunt Trauma")//horribly maim any living creature jumping down disposals.  c'est la vie
 			if(has_fat_guy && prob(2)) // chance of becoming stuck per segment if contains a fat guy
 				active = 0
 				// find the fat guys

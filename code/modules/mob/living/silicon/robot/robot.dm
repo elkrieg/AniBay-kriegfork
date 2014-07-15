@@ -5,7 +5,7 @@
 	icon_state = "robot"
 	maxHealth = 200
 	health = 200
-	
+
 	var/sight_mode = 0
 	var/custom_name = ""
 	var/custom_sprite = 0 //Due to all the sprites involved, a var for our custom borgs may be best
@@ -92,7 +92,7 @@
 		laws = new /datum/ai_laws/drone()
 		connected_ai = null
 	else
-		laws = new /datum/ai_laws/nanotrasen()
+		laws = new /datum/ai_laws/asimov()
 		connected_ai = select_active_ai_with_fewest_borgs()
 		if(connected_ai)
 			connected_ai.connected_robots += src
@@ -238,7 +238,7 @@
 
 	//languages
 	module.add_languages(src)
-	
+
 	//Custom_sprite check and entry
 	if (custom_sprite == 1)
 		module_sprites["Custom"] = "[src.ckey]-[modtype]"

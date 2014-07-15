@@ -12,7 +12,7 @@ var/list/beam_master = list()
 	name = "laser"
 	icon_state = "laser"
 	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
-	damage = 40
+	damage = 50
 	damage_type = BURN
 	flag = "laser"
 	eyeblur = 4
@@ -93,7 +93,7 @@ var/list/beam_master = list()
 /obj/item/projectile/beam/heavylaser
 	name = "heavy laser"
 	icon_state = "heavylaser"
-	damage = 40
+	damage = 75
 
 /obj/item/projectile/beam/xray
 	name = "xray beam"
