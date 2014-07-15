@@ -190,8 +190,8 @@
 		..()
 		opacity = 0
 
-/obj/structure/mineral_door/transparent/phoron
-	mineralType = "phoron"
+/obj/structure/mineral_door/transparent/plasma
+	mineralType = "plasma"
 
 	attackby(obj/item/weapon/W as obj, mob/user as mob)
 		if(istype(W,/obj/item/weapon/weldingtool))
@@ -209,15 +209,15 @@
 
 			var/datum/gas_mixture/napalm = new
 
-			var/phoronToDeduce = temperature/10
+			var/plasmaToDeduce = temperature/10
 
-			napalm.phoron = phoronToDeduce
+			napalm.plasma = plasmaToDeduce
 			napalm.temperature = 200+T0C
 
 			target_tile.assume_air(napalm)
 			spawn (0) target_tile.hotspot_expose(temperature, 400)
 
-			hardness -= phoronToDeduce/100
+			hardness -= plasmaToDeduce/100
 			CheckHardness()
 
 /obj/structure/mineral_door/transparent/diamond

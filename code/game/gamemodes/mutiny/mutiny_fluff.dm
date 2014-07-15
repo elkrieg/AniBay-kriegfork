@@ -179,7 +179,7 @@ D: Speak English <i>goddamnit</i>.<br>
 TM: Standard intelligence acquisition package, sir; we bug their satellite and listen. It's like we have their playbook and we know what their moves are going to be on the market before they make them.<br>
 D: So Mallory doesn't work?<br>
 TM: She worked, sir. We've had an ear on NanoTrasen's regional communications for weeks.<br>
-D: Any news about their <b>Phoron refinement process</b>?<br>
+D: Any news about their <b>plasma refinement process</b>?<br>
 TM: No sir. Our analysts believe they are using a separate channel for their most sensitive data.<br>
 D: So what's the problem?<br>
 TM: The intelligence hasn't been doing us any good. Anything that appears actionable, I send it to the analysts and they make a plan. Thing is, NanoTrasen always sees us coming.<br>

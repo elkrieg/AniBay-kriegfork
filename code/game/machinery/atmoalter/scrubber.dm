@@ -114,8 +114,8 @@
 			filtered_out.temperature = removed.temperature
 
 
-			filtered_out.phoron = removed.phoron
-			removed.phoron = 0
+			filtered_out.plasma = removed.plasma
+			removed.plasma = 0
 
 			filtered_out.carbon_dioxide = removed.carbon_dioxide
 			removed.carbon_dioxide = 0

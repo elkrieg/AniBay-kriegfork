@@ -14,6 +14,7 @@
 	throwforce = 5.0
 	throw_range = 15
 	throw_speed = 3
+	var/is_used = 0
 	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
 
 	matter = list("metal" = 50,"glass" = 20)

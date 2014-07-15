@@ -25,7 +25,7 @@
 	var/plasma_rate = 5
 
 	var/oxygen_alert = 0
-	var/phoron_alert = 0
+	var/plasma_alert = 0
 	var/fire_alert = 0
 
 	var/heat_protection = 0.5

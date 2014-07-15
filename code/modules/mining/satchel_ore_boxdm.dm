@@ -12,7 +12,7 @@
 	var/amt_diamond = 0
 	var/amt_glass = 0
 	var/amt_iron = 0
-	var/amt_phoron = 0
+	var/amt_plasma = 0
 	var/amt_uranium = 0
 	var/amt_clown = 0
 	var/amt_strange = 0
@@ -61,8 +61,8 @@
 		dat += text("<br>Metal ore: [amt_iron]")
 	if (amt_glass)
 		dat += text("<br>Sand: [amt_glass]")
-	if (amt_phoron)
-		dat += text("<br>Phoron ore: [amt_phoron]")
+	if (amt_plasma)
+		dat += text("<br>plasma ore: [amt_plasma]")
 	if (amt_uranium)
 		dat += text("<br>Uranium ore: [amt_uranium]")
 	if (amt_silver)
@@ -113,7 +113,7 @@
 /obj/structure/ore_box/proc/update_orecount()
 	amt_iron = 0
 	amt_glass = 0
-	amt_phoron = 0
+	amt_plasma = 0
 	amt_uranium = 0
 	amt_silver = 0
 	amt_gold = 0
@@ -131,8 +131,8 @@
 		if (istype(O, /obj/item/weapon/ore/glass))
 			amt_glass++
 			continue
-		if (istype(O, /obj/item/weapon/ore/phoron))
-			amt_phoron++
+		if (istype(O, /obj/item/weapon/ore/plasma))
+			amt_plasma++
 			continue
 		if (istype(O, /obj/item/weapon/ore/uranium))
 			amt_uranium++

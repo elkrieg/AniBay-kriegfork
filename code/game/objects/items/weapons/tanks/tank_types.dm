@@ -3,7 +3,7 @@
  *		Oxygen
  *		Anesthetic
  *		Air
- *		Phoron
+ *		plasma
  *		Emergency Oxygen
  */
 
@@ -92,25 +92,25 @@
 
 
 /*
- * Phoron
+ * plasma
  */
-/obj/item/weapon/tank/phoron
-	name = "phoron tank"
-	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
-	icon_state = "phoron"
+/obj/item/weapon/tank/plasma
+	name = "plasma tank"
+	desc = "Contains dangerous plasma. Do not inhale. Warning: extremely flammable."
+	icon_state = "plasma"
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = null	//they have no straps!
 
 
-/obj/item/weapon/tank/phoron/New()
+/obj/item/weapon/tank/plasma/New()
 	..()
 
-	src.air_contents.phoron = (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C)
+	src.air_contents.plasma = (3*ONE_ATMOSPHERE)*70/(R_IDEAL_GAS_EQUATION*T20C)
 	//
 	src.air_contents.update_values()
 	return
 
-/obj/item/weapon/tank/phoron/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/weapon/tank/plasma/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 
 	if (istype(W, /obj/item/weapon/flamethrower))

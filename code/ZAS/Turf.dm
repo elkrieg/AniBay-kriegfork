@@ -192,7 +192,7 @@
 	GM.oxygen = oxygen
 	GM.carbon_dioxide = carbon_dioxide
 	GM.nitrogen = nitrogen
-	GM.phoron = phoron
+	GM.plasma = plasma
 
 	GM.temperature = temperature
 	GM.update_values()
@@ -202,12 +202,12 @@
 /turf/remove_air(amount as num)
 	var/datum/gas_mixture/GM = new
 
-	var/sum = oxygen + carbon_dioxide + nitrogen + phoron
+	var/sum = oxygen + carbon_dioxide + nitrogen + plasma
 	if(sum>0)
 		GM.oxygen = (oxygen/sum)*amount
 		GM.carbon_dioxide = (carbon_dioxide/sum)*amount
 		GM.nitrogen = (nitrogen/sum)*amount
-		GM.phoron = (phoron/sum)*amount
+		GM.plasma = (plasma/sum)*amount
 
 	GM.temperature = temperature
 	GM.update_values()
@@ -240,7 +240,7 @@
 /turf/proc/make_air()
 	air = new/datum/gas_mixture
 	air.temperature = temperature
-	air.adjust(oxygen, carbon_dioxide, nitrogen, phoron)
+	air.adjust(oxygen, carbon_dioxide, nitrogen, plasma)
 	air.group_multiplier = 1
 	air.volume = CELL_VOLUME
 

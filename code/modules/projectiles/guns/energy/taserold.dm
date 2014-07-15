@@ -1,7 +1,8 @@
 /obj/item/weapon/gun/energy/taserold
-	name = "Outdated taser gun"
-	desc = "Outdated version of Taser gun. A small, low capacity gun used for non-lethal takedowns."
-	icon_state = "taserold"
+	name = "taser gun"
+	desc = "A small, low capacity gun used for non-lethal takedowns."
+	icon = 'icons/obj/animus.dmi'
+	icon_state = "taser"
 	item_state = null
 	fire_sound = 'sound/weapons/Taser.ogg'
 	charge_cost = 100

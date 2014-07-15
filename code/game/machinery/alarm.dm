@@ -101,7 +101,7 @@
 	var/pressure_dangerlevel = 0
 	var/oxygen_dangerlevel = 0
 	var/co2_dangerlevel = 0
-	var/phoron_dangerlevel = 0
+	var/plasma_dangerlevel = 0
 	var/temperature_dangerlevel = 0
 	var/other_dangerlevel = 0
 
@@ -110,7 +110,7 @@
 	req_access = list(access_rd, access_atmospherics, access_engine_equip)
 	TLV["oxygen"] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
 	TLV["carbon dioxide"] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
-	TLV["phoron"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
+	TLV["plasma"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
 	TLV["pressure"] =		list(0,ONE_ATMOSPHERE*0.10,ONE_ATMOSPHERE*1.40,ONE_ATMOSPHERE*1.60) /* kpa */
 	TLV["temperature"] =	list(20, 40, 140, 160) // K
@@ -150,7 +150,7 @@
 	// breathable air according to human/Life()
 	TLV["oxygen"] =			list(16, 19, 135, 140) // Partial pressure, kpa
 	TLV["carbon dioxide"] = list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
-	TLV["phoron"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
+	TLV["plasma"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
 	TLV["pressure"] =		list(ONE_ATMOSPHERE*0.80,ONE_ATMOSPHERE*0.90,ONE_ATMOSPHERE*1.10,ONE_ATMOSPHERE*1.20) /* kpa */
 	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
@@ -257,7 +257,7 @@
 	pressure_dangerlevel = get_danger_level(environment_pressure, TLV["pressure"])
 	oxygen_dangerlevel = get_danger_level(environment.oxygen*partial_pressure, TLV["oxygen"])
 	co2_dangerlevel = get_danger_level(environment.carbon_dioxide*partial_pressure, TLV["carbon dioxide"])
-	phoron_dangerlevel = get_danger_level(environment.phoron*partial_pressure, TLV["phoron"])
+	plasma_dangerlevel = get_danger_level(environment.plasma*partial_pressure, TLV["plasma"])
 	temperature_dangerlevel = get_danger_level(environment.temperature, TLV["temperature"])
 	other_dangerlevel = get_danger_level(other_moles*partial_pressure, TLV["other"])
 
@@ -265,7 +265,7 @@
 		pressure_dangerlevel,
 		oxygen_dangerlevel,
 		co2_dangerlevel,
-		phoron_dangerlevel,
+		plasma_dangerlevel,
 		other_dangerlevel,
 		temperature_dangerlevel
 		)
@@ -317,11 +317,11 @@
 	if((stat & (NOPOWER|BROKEN)) || shorted)
 		icon_state = "alarmp"
 		return
-	
+
 	var/icon_level = danger_level
 	if (alarm_area.atmosalm)
 		icon_level = max(icon_level, 1)	//if there's an atmos alarm but everything is okay locally, no need to go past yellow
-	
+
 	switch(icon_level)
 		if (0)
 			icon_state = "alarm0"
@@ -649,7 +649,7 @@
 /obj/machinery/alarm/proc/return_status()
 	var/turf/location = get_turf(src)
 	var/datum/gas_mixture/environment = location.return_air()
-	var/total = environment.oxygen + environment.carbon_dioxide + environment.phoron + environment.nitrogen
+	var/total = environment.oxygen + environment.carbon_dioxide + environment.plasma + environment.nitrogen
 	var/output = "<b>Air Status:</b><br>"
 
 	if(total == 0)
@@ -678,9 +678,9 @@
 	var/co2_dangerlevel = get_danger_level(environment.carbon_dioxide*partial_pressure, current_settings)
 	var/co2_percent = round(environment.carbon_dioxide / total * 100, 2)
 
-	current_settings = TLV["phoron"]
-	var/phoron_dangerlevel = get_danger_level(environment.phoron*partial_pressure, current_settings)
-	var/phoron_percent = round(environment.phoron / total * 100, 2)
+	current_settings = TLV["plasma"]
+	var/plasma_dangerlevel = get_danger_level(environment.plasma*partial_pressure, current_settings)
+	var/plasma_percent = round(environment.plasma / total * 100, 2)
 
 	current_settings = TLV["other"]
 	var/other_moles = 0.0
@@ -695,7 +695,7 @@
 Pressure: <span class='dl[pressure_dangerlevel]'>[environment_pressure]</span>kPa<br>
 Oxygen: <span class='dl[oxygen_dangerlevel]'>[oxygen_percent]</span>%<br>
 Carbon dioxide: <span class='dl[co2_dangerlevel]'>[co2_percent]</span>%<br>
-Toxins: <span class='dl[phoron_dangerlevel]'>[phoron_percent]</span>%<br>
+Toxins: <span class='dl[plasma_dangerlevel]'>[plasma_percent]</span>%<br>
 "}
 	if (other_dangerlevel==2)
 		output += "Notice: <span class='dl2'>High Concentration of Unknown Particles Detected</span><br>"
@@ -706,7 +706,7 @@ Toxins: <span class='dl[phoron_dangerlevel]'>[phoron_percent]</span>%<br>
 
 	//'Local Status' should report the LOCAL status, damnit.
 	output += "Local Status: "
-	switch(max(pressure_dangerlevel,oxygen_dangerlevel,co2_dangerlevel,phoron_dangerlevel,other_dangerlevel,temperature_dangerlevel))
+	switch(max(pressure_dangerlevel,oxygen_dangerlevel,co2_dangerlevel,plasma_dangerlevel,other_dangerlevel,temperature_dangerlevel))
 		if(2)
 			output += "<span class='dl2'>DANGER: Internals Required</span><br>"
 		if(1)
@@ -721,7 +721,7 @@ Toxins: <span class='dl[phoron_dangerlevel]'>[phoron_percent]</span>%<br>
 		output += "<span class='dl1'>Fire alarm in area</span>"
 	else
 		output += "No alerts"
-	
+
 	return output
 
 /obj/machinery/alarm/proc/rcon_text()
@@ -835,7 +835,7 @@ siphoning
 Carbon Dioxide
 <A href='?src=\ref[src];id_tag=[id_tag];command=co2_scrub;val=[!data["filter_co2"]]'>[data["filter_co2"]?"on":"off"]</A>;
 Toxins
-<A href='?src=\ref[src];id_tag=[id_tag];command=tox_scrub;val=[!data["filter_phoron"]]'>[data["filter_phoron"]?"on":"off"]</A>;
+<A href='?src=\ref[src];id_tag=[id_tag];command=tox_scrub;val=[!data["filter_plasma"]]'>[data["filter_plasma"]?"on":"off"]</A>;
 Nitrous Oxide
 <A href='?src=\ref[src];id_tag=[id_tag];command=n2o_scrub;val=[!data["filter_n2o"]]'>[data["filter_n2o"]?"on":"off"]</A>
 <BR>
@@ -884,7 +884,7 @@ table tr:first-child th:first-child { border: none;}
 			var/list/gases = list(
 				"oxygen"         = "O<sub>2</sub>",
 				"carbon dioxide" = "CO<sub>2</sub>",
-				"phoron"         = "Toxin",
+				"plasma"         = "Toxin",
 				"other"          = "Other",)
 
 			var/list/selected

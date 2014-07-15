@@ -250,6 +250,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 
 /obj/machinery/door/airlock/diamond
 	name = "Diamond Airlock"
+	desc = "Gems are outrageous. Truly, truly outrageous."
 	icon = 'icons/obj/doors/Doordiamond.dmi'
 	mineral = "diamond"
 
@@ -272,37 +273,37 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 		L.apply_effect(15,IRRADIATE,0)
 	return
 
-/obj/machinery/door/airlock/phoron
-	name = "Phoron Airlock"
+/obj/machinery/door/airlock/plasma
+	name = "plasma Airlock"
 	desc = "No way this can end badly."
 	icon = 'icons/obj/doors/Doorphoron.dmi'
-	mineral = "phoron"
+	mineral = "plasma"
 
-/obj/machinery/door/airlock/phoron/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/machinery/door/airlock/plasma/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
-		PhoronBurn(exposed_temperature)
+		plasmaBurn(exposed_temperature)
 
-/obj/machinery/door/airlock/phoron/proc/ignite(exposed_temperature)
+/obj/machinery/door/airlock/plasma/proc/ignite(exposed_temperature)
 	if(exposed_temperature > 300)
-		PhoronBurn(exposed_temperature)
+		plasmaBurn(exposed_temperature)
 
-/obj/machinery/door/airlock/phoron/proc/PhoronBurn(temperature)
+/obj/machinery/door/airlock/plasma/proc/plasmaBurn(temperature)
 	for(var/turf/simulated/floor/target_tile in range(2,loc))
 //		if(target_tile.parent && target_tile.parent.group_processing) // THESE PROBABLY DO SOMETHING IMPORTANT BUT I DON'T KNOW HOW TO FIX IT - Erthilo
 //			target_tile.parent.suspend_group_processing()
 		var/datum/gas_mixture/napalm = new
-		var/phoronToDeduce = 35
-		napalm.phoron = phoronToDeduce
+		var/plasmaToDeduce = 35
+		napalm.plasma = plasmaToDeduce
 		napalm.temperature = 400+T0C
 		target_tile.assume_air(napalm)
 		spawn (0) target_tile.hotspot_expose(temperature, 400)
-	for(var/obj/structure/falsewall/phoron/F in range(3,src))//Hackish as fuck, but until temperature_expose works, there is nothing I can do -Sieve
+	for(var/obj/structure/falsewall/plasma/F in range(3,src))//Hackish as fuck, but until temperature_expose works, there is nothing I can do -Sieve
 		var/turf/T = get_turf(F)
-		T.ChangeTurf(/turf/simulated/wall/mineral/phoron/)
+		T.ChangeTurf(/turf/simulated/wall/mineral/plasma/)
 		del (F)
-	for(var/turf/simulated/wall/mineral/phoron/W in range(3,src))
+	for(var/turf/simulated/wall/mineral/plasma/W in range(3,src))
 		W.ignite((temperature/4))//Added so that you can't set off a massive chain reaction with a small flame
-	for(var/obj/machinery/door/airlock/phoron/D in range(3,src))
+	for(var/obj/machinery/door/airlock/plasma/D in range(3,src))
 		D.ignite(temperature/4)
 	new/obj/structure/door_assembly( src.loc )
 	del (src)
@@ -1241,7 +1242,7 @@ About the new airlock wires panel:
 		..()
 	return
 
-/obj/machinery/door/airlock/phoron/attackby(C as obj, mob/user as mob)
+/obj/machinery/door/airlock/plasma/attackby(C as obj, mob/user as mob)
 	if(C)
 		ignite(is_hot(C))
 	..()

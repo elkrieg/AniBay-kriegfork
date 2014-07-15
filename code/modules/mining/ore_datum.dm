@@ -23,9 +23,9 @@
 	compresses_to = /obj/item/stack/sheet/mineral/sandstone
 	oretag = "sand"
 
-/datum/ore/phoron
-	smelts_to = /obj/item/stack/sheet/mineral/phoron
-	oretag = "phoron"
+/datum/ore/plasma
+	smelts_to = /obj/item/stack/sheet/mineral/plasma
+	oretag = "plasma"
 
 /datum/ore/silver
 	smelts_to = /obj/item/stack/sheet/mineral/silver

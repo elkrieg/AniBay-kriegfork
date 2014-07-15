@@ -46,7 +46,7 @@
 	..()
 	if(!on)
 		return 0
-	
+
 	if(!input || !output)
 		return
 
@@ -54,7 +54,7 @@
 	var/datum/gas_mixture/input_air = input.air		// it's completely happy with them if they're in a loop though i.e. "P.air.return_pressure()"... *shrug*
 
 	var/output_pressure = output_air.return_pressure()
-	
+
 	if(output_pressure >= target_pressure)
 		return
 	for(var/datum/omni_port/P in filters)
@@ -68,14 +68,14 @@
 
 	if(input.transfer_moles > 0)
 		var/datum/gas_mixture/removed = input_air.remove(input.transfer_moles)
-		
+
 		if(!removed)
 			return
-		
+
 		for(var/datum/omni_port/P in filters)
 			var/datum/gas_mixture/filtered_out = new
 			filtered_out.temperature = removed.return_temperature()
-			
+
 			switch(P.mode)
 				if(ATM_O2)
 					filtered_out.oxygen = removed.oxygen
@@ -87,8 +87,8 @@
 					filtered_out.carbon_dioxide = removed.carbon_dioxide
 					removed.carbon_dioxide = 0
 				if(ATM_P)
-					filtered_out.phoron = removed.phoron
-					removed.phoron = 0
+					filtered_out.plasma = removed.plasma
+					removed.plasma = 0
 				if(ATM_N2O)
 					if(removed.trace_gases.len>0)
 						for(var/datum/gas/sleeping_agent/trace_gas in removed.trace_gases)
@@ -97,15 +97,15 @@
 								filtered_out.trace_gases += trace_gas
 				else
 					filtered_out = null
-			
+
 			P.air.merge(filtered_out)
 			if(P.network)
 				P.network.update = 1
-		
+
 		output_air.merge(removed)
 		if(output.network)
 			output.network.update = 1
-		
+
 		input.transfer_moles = 0
 		if(input.network)
 			input.network.update = 1
@@ -174,7 +174,7 @@
 		if(ATM_CO2)
 			return "Carbon Dioxide"
 		if(ATM_P)
-			return "Phoron" //*cough* Plasma *cough*
+			return "plasma" //*cough* Plasma *cough*
 		if(ATM_N2O)
 			return "Nitrous Oxide"
 		else
@@ -202,7 +202,7 @@
 			if("switch_mode")
 				switch_mode(dir_flag(href_list["dir"]), mode_return_switch(href_list["mode"]))
 			if("switch_filter")
-				var/new_filter = input(usr,"Select filter mode:","Change filter",href_list["mode"]) in list("None", "Oxygen", "Nitrogen", "Carbon Dioxide", "Phoron", "Nitrous Oxide")
+				var/new_filter = input(usr,"Select filter mode:","Change filter",href_list["mode"]) in list("None", "Oxygen", "Nitrogen", "Carbon Dioxide", "plasma", "Nitrous Oxide")
 				switch_filter(dir_flag(href_list["dir"]), mode_return_switch(new_filter))
 
 	update_icon()
@@ -217,7 +217,7 @@
 			return ATM_N2
 		if("Carbon Dioxide")
 			return ATM_CO2
-		if("Phoron")
+		if("plasma")
 			return ATM_P
 		if("Nitrous Oxide")
 			return ATM_N2O

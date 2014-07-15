@@ -34,8 +34,8 @@
 	icon_state = "blue"
 	canister_color = "blue"
 	can_label = 0
-/obj/machinery/portable_atmospherics/canister/phoron
-	name = "Canister \[Phoron\]"
+/obj/machinery/portable_atmospherics/canister/plasma
+	name = "Canister \[plasma\]"
 	icon_state = "orange"
 	canister_color = "orange"
 	can_label = 0
@@ -88,9 +88,9 @@ update_flag
 		src.overlays = 0
 		src.icon_state = text("[]-1", src.canister_color)
 
-	if(icon_state != "[canister_color]") 
+	if(icon_state != "[canister_color]")
 		icon_state = "[canister_color]"
-	
+
 	if(check_change()) //Returns 1 if no change needed to icons.
 		return
 
@@ -171,7 +171,7 @@ update_flag
 	else
 		can_label = 0
 
-	if(air_contents.temperature > PHORON_FLASHPOINT)
+	if(air_contents.temperature > plasma_FLASHPOINT)
 		air_contents.zburn()
 	return
 
@@ -227,10 +227,10 @@ update_flag
 		return
 
 	..()
-	
+
 	nanomanager.update_uis(src) // Update all NanoUIs attached to src
-	
-	
+
+
 
 /obj/machinery/portable_atmospherics/canister/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
@@ -255,8 +255,8 @@ update_flag
 	data["minReleasePressure"] = round(ONE_ATMOSPHERE/10)
 	data["maxReleasePressure"] = round(10*ONE_ATMOSPHERE)
 	data["valveOpen"] = valve_open ? 1 : 0
-	
-	data["hasHoldingTank"] = holding ? 1 : 0	
+
+	data["hasHoldingTank"] = holding ? 1 : 0
 	if (holding)
 		data["holdingTank"] = list("name" = holding.name, "tankPressure" = round(holding.air_contents.return_pressure()))
 
@@ -330,17 +330,17 @@ update_flag
 				src.canister_color = colors[label]
 				src.icon_state = colors[label]
 				src.name = "Canister: [label]"
-	
+
 	src.add_fingerprint(usr)
 	update_icon()
-	
+
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/phoron/New()
+/obj/machinery/portable_atmospherics/canister/plasma/New()
 
 	..()
 
-	src.air_contents.phoron = (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
+	src.air_contents.plasma = (src.maximum_pressure*filled)*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
 	air_contents.update_values()
 
 	src.update_icon()

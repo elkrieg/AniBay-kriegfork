@@ -29,11 +29,11 @@
 	origin_tech = "materials=1"
 	oretag = "sand"
 
-/obj/item/weapon/ore/phoron
-	name = "phoron crystals"
-	icon_state = "Phoron ore"
+/obj/item/weapon/ore/plasma
+	name = "plasma crystals"
+	icon_state = "plasma ore"
 	origin_tech = "materials=2"
-	oretag = "phoron"
+	oretag = "plasma"
 
 /obj/item/weapon/ore/silver
 	name = "native silver ore"

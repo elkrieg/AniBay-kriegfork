@@ -1,11 +1,11 @@
 // BEGIN_INTERNALS
 /*
 MAP_ICON_TYPE: 0
-WINDOW: code\game\asteroid.dm;code\global.dm;code\world.dm;code\controllers\configuration.dm;code\controllers\verbs.dm;code\controllers\voting.dm;code\defines\obj\weapon.dm;code\defines\procs\statistics.dm;code\modules\admin\IsBanned.dm;code\defines\procs\dbcore.dm;code\modules\library\lib_machines.dm;code\game\gamemodes\changeling\changeling.dm;code\game\gamemodes\changeling\changeling_powers.dm;code\game\gamemodes\cult\cult.dm;code\game\gamemodes\heist\heist.dm;code\game\gamemodes\meme\meme.dm;code\game\gamemodes\ninja\ninja.dm;code\game\gamemodes\revolution\anti_revolution.dm;code\game\gamemodes\traitor\traitor.dm;code\game\gamemodes\wizard\spellbook.dm;code\game\gamemodes\wizard\wizard.dm;code\game\jobs\job_controller.dm;code\game\objects\items\devices\uplinks.dm;code\game\objects\items\weapons\handcuffs.dm;code\modules\admin\admin.dm
+WINDOW: code\game\objects\items\devices\PDA\PDA.dm;code\modules\admin\verbs\adminpm.dm;code\game\objects\items\weapons\cards_ids.dm;code\game\objects\structures\crates_lockers\crates.dm;code\game\objects\structures\crates_lockers\closets.dm;code\game\objects\items\devices\multitool.dm
 LAST_COMPILE_VERSION: 506.1247
-DIR: code code\controllers code\defines code\defines\obj code\defines\procs code\game code\game\area code\game\gamemodes code\game\gamemodes\changeling code\game\gamemodes\cult code\game\gamemodes\heist code\game\gamemodes\meme code\game\gamemodes\ninja code\game\gamemodes\revolution code\game\gamemodes\traitor code\game\gamemodes\wizard code\game\jobs code\game\objects code\game\objects\items code\game\objects\items\devices code\game\objects\items\weapons code\game\objects\structures\stool_bed_chair_nest code\modules code\modules\admin code\modules\library code\modules\mob code\modules\mob\living code\modules\mob\living\carbon 
-FILE: code\defines\procs\statistics.dm
-LAST_COMPILE_TIME: 1405431970
+DIR: code code\_onclick code\_onclick\hud code\ATMOSPHERICS code\ATMOSPHERICS\components code\ATMOSPHERICS\components\omni_devices code\ATMOSPHERICS\components\trinary_devices code\ATMOSPHERICS\components\unary code\controllers code\datums code\game code\game\objects code\game\objects\items code\game\objects\items\devices code\game\objects\items\devices\PDA code\game\objects\items\weapons code\game\objects\structures code\game\objects\structures\crates_lockers code\modules code\modules\admin code\modules\admin\verbs 
+FILE: code\game\objects\items\devices\multitool.dm
+LAST_COMPILE_TIME: 1405445440
 AUTO_FILE_DIR: OFF
 */
 // END_INTERNALS

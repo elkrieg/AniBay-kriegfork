@@ -41,7 +41,7 @@ datum/pipeline
 
 			member.air_temporary.oxygen = air.oxygen*member.volume/air.volume
 			member.air_temporary.nitrogen = air.nitrogen*member.volume/air.volume
-			member.air_temporary.phoron = air.phoron*member.volume/air.volume
+			member.air_temporary.plasma = air.plasma*member.volume/air.volume
 			member.air_temporary.carbon_dioxide = air.carbon_dioxide*member.volume/air.volume
 
 			member.air_temporary.temperature = air.temperature
@@ -213,7 +213,7 @@ datum/pipeline
 				air.temperature -= heat/total_heat_capacity
 		if(network)
 			network.update = 1
-			
+
 	proc/radiate_heat(surface, thermal_conductivity)
 		var/total_heat_capacity = air.heat_capacity()
 		var/heat = STEFAN_BOLTZMANN_CONSTANT * surface * air.temperature ** 4 * thermal_conductivity

@@ -387,9 +387,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/dead/observer/verb/analyze_air()
 	set name = "Analyze Air"
 	set category = "Ghost"
-	
+
 	if(!istype(usr, /mob/dead/observer)) return
-	
+
 	// Shamelessly copied from the Gas Analyzers
 	if (!( istype(usr.loc, /turf) ))
 		return
@@ -408,9 +408,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/o2_concentration = environment.oxygen/total_moles
 		var/n2_concentration = environment.nitrogen/total_moles
 		var/co2_concentration = environment.carbon_dioxide/total_moles
-		var/phoron_concentration = environment.phoron/total_moles
+		var/plasma_concentration = environment.plasma/total_moles
 
-		var/unknown_concentration =  1-(o2_concentration+n2_concentration+co2_concentration+phoron_concentration)
+		var/unknown_concentration =  1-(o2_concentration+n2_concentration+co2_concentration+plasma_concentration)
 		if(abs(n2_concentration - N2STANDARD) < 20)
 			src << "\blue Nitrogen: [round(n2_concentration*100)]% ([round(environment.nitrogen,0.01)] moles)"
 		else
@@ -426,8 +426,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		else
 			src << "\blue CO2: [round(co2_concentration*100)]% ([round(environment.carbon_dioxide,0.01)] moles)"
 
-		if(phoron_concentration > 0.01)
-			src << "\red Phoron: [round(phoron_concentration*100)]% ([round(environment.phoron,0.01)] moles)"
+		if(plasma_concentration > 0.01)
+			src << "\red plasma: [round(plasma_concentration*100)]% ([round(environment.plasma,0.01)] moles)"
 
 		if(unknown_concentration > 0.01)
 			src << "\red Unknown: [round(unknown_concentration*100)]% ([round(unknown_concentration*total_moles,0.01)] moles)"

@@ -123,8 +123,8 @@ obj/structure/ex_act(severity)
 			else if(!pod.moving && pod.dir in directions())
 				AM.loc = pod
 				return
-			
-			
+
+
 /obj/structure/transit_tube/station/attack_hand(mob/user as mob)
 	if(!pod_moving)
 		for(var/obj/structure/transit_tube_pod/pod in loc)
@@ -362,7 +362,7 @@ obj/structure/ex_act(severity)
 	GM.oxygen			= air_contents.oxygen
 	GM.carbon_dioxide	= air_contents.carbon_dioxide
 	GM.nitrogen			= air_contents.nitrogen
-	GM.phoron			= air_contents.phoron
+	GM.plasma			= air_contents.plasma
 	GM.temperature		= air_contents.temperature
 	return GM
 

@@ -196,13 +196,13 @@ obj/item/weapon/gun/energy/staff/focus
 	*/
 
 /obj/item/weapon/gun/energy/toxgun
-	name = "phoron pistol"
-	desc = "A specialized firearm designed to fire lethal bolts of phoron."
+	name = "plasma pistol"
+	desc = "A specialized firearm designed to fire lethal bolts of plasma."
 	icon_state = "toxgun"
 	fire_sound = 'sound/effects/stealthoff.ogg'
 	w_class = 3.0
-	origin_tech = "combat=5;phorontech=4"
-	projectile_type = "/obj/item/projectile/energy/phoron"
+	origin_tech = "combat=5;plasmatech=4"
+	projectile_type = "/obj/item/projectile/energy/plasma"
 
 /obj/item/weapon/gun/energy/sniperrifle
 	name = "L.W.A.P. Sniper Rifle"
@@ -224,7 +224,7 @@ obj/item/weapon/gun/energy/staff/focus
 
 
 /*
-This is called from 
+This is called from
 modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
