@@ -1332,7 +1332,7 @@ datum
 				if(!M) M = holder.my_atom
 				if(ishuman(M))
 					var/mob/living/carbon/human/H = M
-					
+
 					//Peridaxon is hard enough to get, it's probably fair to make this all internal organs
 					for(var/datum/organ/internal/I in H.internal_organs)
 						if(I.damage > 0)
@@ -1591,9 +1591,9 @@ datum
 				return
 
 		toxin/plasma
-			name = "plasma"
+			name = "Plasma"
 			id = "plasma"
-			description = "plasma in its liquid form."
+			description = "Plasma in its liquid form."
 			reagent_state = LIQUID
 			color = "#E71B00" // rgb: 231, 27, 0
 			toxpwr = 3

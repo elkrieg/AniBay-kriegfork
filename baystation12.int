@@ -1,11 +1,11 @@
 // BEGIN_INTERNALS
 /*
 MAP_ICON_TYPE: 0
-WINDOW: code\modules\recycling\disposal.dm;code\unused\computer2\med_rec.dm;code\WorkInProgress\computer3\program.dm;code\WorkInProgress\computer3\computers\law.dm;code\WorkInProgress\computer3\computers\medical.dm;code\game\objects\structures\tables_racks.dm;code\__HELPERS\game.dm;code\modules\telesci\proj.dm;code\modules\telesci\telepad_remote.dm;maps\anibay1.5.dmm;code\modules\telesci\bscrystal.dm;code\WorkInProgress\computer3\bios.dm;code\modules\mob\mob_movement.dm;code\modules\mob\mob_defines.dm;code\modules\vehicles\cargo_train.dm;code\controllers\configuration.dm;code\modules\mob\mob.dm;code\modules\mob\living\living.dm;code\modules\mob\dead\death.dm;code\modules\mob\update_icons.dm;code\modules\mob\living\carbon\human\human_movement.dm;code\game\area\areas.dm;code\modules\mob\living\living_defines.dm;code\__HELPERS\maths.dm
+WINDOW: code\modules\admin\admin.dm;code\game\objects\items\weapons\tanks\tanks.dm;code\game\objects\items\weapons\tanks\tank_types.dm;code\game\vehicles\vehicle.dm;code\modules\admin\verbs\debug.dm;code\modules\events\ion_storm.dm;code\modules\mob\mob.dm;code\modules\admin\admin_ranks.dm;code\modules\mob\update_icons.dm;code\modules\mob\living\carbon\update_icons.dm;code\__HELPERS\maths.dm;code\game\gamemodes\wizard\spellbook.dm;code\game\machinery\doors\airlock.dm;code\game\machinery\doors\door.dm;code\game\machinery\doors\firedoor.dm;code\modules\mob\living\living.dm
 LAST_COMPILE_VERSION: 506.1247
-DIR: code code\_onclick\hud code\ATMOSPHERICS\components code\ATMOSPHERICS\components\omni_devices code\ATMOSPHERICS\components\trinary_devices code\ATMOSPHERICS\components\unary code\controllers code\game\area code\game\gamemodes code\game\objects\structures code\modules code\modules\mob code\modules\mob\dead code\modules\mob\living code\modules\mob\living\carbon code\modules\mob\living\carbon\human code\modules\vehicles code\unused\computer2 code\WorkInProgress\computer3\computers icons icons\obj maps 
-FILE: code\controllers\configuration.dm
-LAST_COMPILE_TIME: 1405459971
+DIR: code code\__HELPERS code\_onclick\hud code\ATMOSPHERICS\components code\ATMOSPHERICS\components\omni_devices code\ATMOSPHERICS\components\trinary_devices code\ATMOSPHERICS\components\unary code\controllers code\datums code\defines code\defines\obj code\game code\game\gamemodes code\game\gamemodes\wizard code\game\machinery code\game\machinery\doors code\game\objects code\game\objects\items code\game\objects\items\weapons code\game\objects\items\weapons\tanks code\game\vehicles code\modules code\modules\admin code\modules\admin\verbs code\modules\events code\modules\mob code\modules\mob\living code\modules\mob\living\carbon 
+FILE: code\modules\mob\living\living.dm
+LAST_COMPILE_TIME: 1405473355
 AUTO_FILE_DIR: ON
 */
 // END_INTERNALS

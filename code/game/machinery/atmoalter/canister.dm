@@ -35,7 +35,7 @@
 	canister_color = "blue"
 	can_label = 0
 /obj/machinery/portable_atmospherics/canister/plasma
-	name = "Canister \[plasma\]"
+	name = "Canister \[Plasma\]"
 	icon_state = "orange"
 	canister_color = "orange"
 	can_label = 0
