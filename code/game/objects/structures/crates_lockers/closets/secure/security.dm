@@ -190,7 +190,7 @@
 		new /obj/item/weapon/reagent_containers/spray/pepper(src)
 		new /obj/item/weapon/grenade/flashbang(src)
 		new /obj/item/weapon/melee/baton(src)
-		new /obj/item/weapon/gun/energy/taser(src)
+		new /obj/item/weapon/gun/energy/taser/dual(src)
 		new /obj/item/clothing/glasses/sunglasses/sechud(src)
 		new /obj/item/taperoll/police(src)
 		new /obj/item/device/hailer(src)
