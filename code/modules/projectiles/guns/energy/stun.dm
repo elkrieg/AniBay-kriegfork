@@ -53,7 +53,7 @@
 	icon_state = "stunrevolver"
 	fire_sound = 'sound/weapons/Taser.ogg'
 	origin_tech = "combat=3;materials=3;powerstorage=2"
-	charge_cost = 250
+	charge_cost = 125
 	projectile_type = "/obj/item/projectile/energy/taserpowershot"
 	cell_type = "/obj/item/weapon/cell"
 
