@@ -1498,6 +1498,10 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Derelict Primary Hallway"
 	icon_state = "hallP"
 
+/area/derelict/tcomsat
+	name = "\improper Telecoms Satellite"
+	icon_state = "tcomsatcham"
+
 /area/derelict/hallway/secondary
 	name = "\improper Derelict Secondary Hallway"
 	icon_state = "hallS"
