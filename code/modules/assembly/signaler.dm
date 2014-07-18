@@ -62,6 +62,10 @@
 	<A href='byond://?src=\ref[src];code=1'>+</A>
 	<A href='byond://?src=\ref[src];code=5'>+</A><BR>
 	[t1]
+
+	<BR>
+	<BR>
+	<A href='byond://?src=\ref[src];buttoncraft=1'>Craft button</A>
 	</TT>"}
 		user << browse(dat, "window=radio")
 		onclose(user, "radio")
@@ -91,6 +95,38 @@
 		if(href_list["send"])
 			spawn( 0 )
 				signal()
+				//Создание кнопки из сигналера, которая отсылает сигнал при нажатии.
+		if(href_list["buttoncraft"])
+			if(ishuman(usr))
+				var/mob/living/carbon/human/H = usr
+				if(H.l_hand == src)
+					var /obj/machinery/door_control/radio/R = new /obj/machinery/door_control/radio(usr.loc)
+					src.dropped(usr)
+					src.loc = R
+					R.signaler = src
+					H.l_hand = null
+					usr.u_equip(src)
+					usr.update_icons()
+					usr.client.screen -= src
+					usr.update_inv_l_hand()
+					usr << browse(null, "window=radio")
+					return
+				else if(H.r_hand == src)
+					var /obj/machinery/door_control/radio/R = new /obj/machinery/door_control/radio(usr.loc)
+					src.dropped(usr)
+					src.loc = R
+					R.signaler = src
+					H.r_hand = null
+					usr.u_equip(src)
+					usr.update_icons()
+					usr.client.screen -= src
+					usr.update_inv_r_hand()
+					usr << browse(null, "window=radio")
+					return
+				else
+					usr << "\red You should take signaler in your hand to craft something"
+
+
 
 		if(usr)
 			attack_self(usr)
