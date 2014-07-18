@@ -257,6 +257,7 @@
 //	preload_vox() //Causes long delays with initial start window and subsequent windows when first logged in.
 
 	getFiles(
+		'icons/turntable_back.jpg',
 		'nano/images/uiBackground.png',
 		'nano/images/uiBackground-Syndicate.png',
 		'nano/images/uiIcons16.png',
