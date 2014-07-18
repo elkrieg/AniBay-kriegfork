@@ -46,7 +46,26 @@
 	icon_state = "spark"
 	pass_flags = PASSTABLE
 	nodamage = 1
+	stun = 15
+	weaken = 15
+	stutter = 15
+	damage_type = BURN
+
+
+/obj/item/projectile/energy/tasershot/shell
+	name = "electrode"
+	icon_state = "spark"
+	pass_flags = PASSTABLE
+	nodamage = 1
 	stun = 20
 	weaken = 20
 	stutter = 20
 	damage_type = BURN
+
+/obj/item/projectile/energy/tasershot/shell/on_hit(var/atom/target, var/blocked = 0)
+
+	var/obj/T = target
+	var/throwdir = get_dir(firer,target)
+	if(istype(T) || ismob(T))
+		T.throw_at(get_edge_target_turf(target, throwdir),3,10)
+	return 1

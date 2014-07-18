@@ -15,7 +15,8 @@
 
 /obj/item/projectile/bullet/weakbullet // "rubber" bullets
 	damage = 10
-	agony = 40
+	stun = 8
+	weaken = 8
 	embed = 0
 	sharp = 0
 
@@ -26,10 +27,12 @@
 	name = "rubber bullet"
 
 /obj/item/projectile/bullet/midbullet
-	damage = 20
+	damage = 40
+	stun = 5
+	weaken = 5
 
 /obj/item/projectile/bullet/midbullet2
-	damage = 25
+	damage = 50
 
 /obj/item/projectile/bullet/suffocationbullet//How does this even work?
 	name = "co bullet"
@@ -53,7 +56,8 @@
 /obj/item/projectile/bullet/stunshot
 	name = "stunshot"
 	damage = 5
-	agony = 80
+	stun = 15
+	weaken = 10
 	stutter = 10
 	embed = 0
 	sharp = 0
@@ -64,3 +68,6 @@
 /obj/item/projectile/bullet/chameleon
 	damage = 1 // stop trying to murderbone with a fake gun dumbass!!!
 	embed = 0 // nope
+
+/obj/item/projectile/bullet/beretta
+	damage = 27
