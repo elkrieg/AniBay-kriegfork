@@ -116,7 +116,7 @@ obj/item/stack/sheet/mineral/iron/New()
 
 /obj/item/stack/sheet/mineral/plasma
 	name = "solid plasma"
-	icon_state = "sheet-plasma"
+	icon_state = "sheet-phoron"
 	origin_tech = "plasmatech=2;materials=2"
 	perunit = 2000
 	sheettype = "plasma"

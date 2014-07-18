@@ -1,11 +1,11 @@
 // BEGIN_INTERNALS
 /*
 MAP_ICON_TYPE: 0
-WINDOW: maps\anibay1.5.dmm;code\game\area\Space Station 13 areas.dm
-LAST_COMPILE_VERSION: 501.1217
-DIR: code code\game code\game\area icons icons\misc maps 
-FILE: maps\anibay1.5.dmm
-LAST_COMPILE_TIME: 1405627093
+WINDOW: maps\anibay1.5.dmm;icons\misc\fullscreen_halloween.dmi;icons\turf\floors.dmi;icons\turf\walls.dmi;icons\obj\aibots.dmi;icons\obj\doors\mineral_doors.dmi;code\game\atoms.dm;code\game\objects\structures\mineral_doors.dm;code\modules\reagents\Chemistry-Machinery.dm;code\modules\reagents\Chemistry-Recipes.dm;code\modules\research\protolathe.dm;code\modules\research\rdconsole.dm;code\modules\research\xenoarchaeology\finds\finds.dm;code\unused\mining\datum_processing_recipe.dm;code\unused\mining\machine_craftlathe_unused.dm;code\unused\mining\machine_purifier_unused.dm;code\unused\powerarmor\powerarmor.dm;code\game\supplyshuttle.dm;code\game\machinery\camera\camera_assembly.dm;code\game\machinery\camera\presets.dm;code\game\mecha\mech_fabricator.dm;code\game\mecha\equipment\tools\tools.dm;code\game\objects\items\stacks\sheets\mineral.dm
+LAST_COMPILE_VERSION: 506.1247
+DIR: code code\game code\game\area code\game\machinery code\game\machinery\camera code\game\mecha code\game\mecha\equipment code\game\mecha\equipment\tools code\game\objects code\game\objects\items code\game\objects\items\stacks code\game\objects\items\stacks\sheets code\game\objects\structures code\modules code\modules\reagents code\modules\research code\modules\research\xenoarchaeology code\modules\research\xenoarchaeology\finds code\unused code\unused\mining code\unused\powerarmor icons icons\misc icons\obj icons\obj\doors icons\turf 
+FILE: code\game\objects\items\stacks\sheets\mineral.dm
+LAST_COMPILE_TIME: 1405716671
 AUTO_FILE_DIR: OFF
 */
 // END_INTERNALS
